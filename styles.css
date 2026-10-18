@@ -142,3 +142,7 @@ footer .wrap{display:grid;gap:10px}
 .pd-note a{color:var(--leaf);font-weight:600}
 .sheet{color:var(--leaf);font-weight:600}
 .hint{flex-basis:100%;font-size:.8rem;color:var(--muted)}
+.pimg{display:grid;place-items:center;background:#fff;border-radius:12px;padding:8px;margin:-4px -4px 4px}
+.pimg img{width:100%;max-width:160px;height:auto;aspect-ratio:1;object-fit:contain}
+.pd-img{justify-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;max-width:100%}
+.pd-img img{display:block;width:220px;max-width:100%;height:auto;aspect-ratio:1;object-fit:contain}

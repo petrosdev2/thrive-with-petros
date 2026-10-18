@@ -28,7 +28,7 @@
     return `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>${c.shop ? `<span class="hint">Opens my NeoLife shop. Check that ${esc(c.name)} is selected as your country there.</span>` : ""}`;
   }
   function card(p){
-    return `<article class="prod"><span class="need">${esc(p.need)}</span><h3><a class="plink" href="${root}products/${p.slug}.html">${esc(p.name)}</a></h3><span class="size">${esc(p.size)}</span><p>${esc(p.desc)}</p>${priceHtml(p)}<div class="acts">${actionHtml(p)}<a class="more" href="${root}products/${p.slug}.html">Full details →</a></div></article>`;
+    return `<article class="prod"><a class="pimg" href="${root}products/${p.slug}.html" tabindex="-1" aria-hidden="true"><img src="${root}images/products/${p.slug}.jpg" alt="" loading="lazy" width="160" height="160"></a><span class="need">${esc(p.need)}</span><h3><a class="plink" href="${root}products/${p.slug}.html">${esc(p.name)}</a></h3><span class="size">${esc(p.size)}</span><p>${esc(p.desc)}</p>${priceHtml(p)}<div class="acts">${actionHtml(p)}<a class="more" href="${root}products/${p.slug}.html">Full details →</a></div></article>`;
   }
 
   function renderShop(){
