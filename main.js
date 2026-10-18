@@ -25,7 +25,7 @@
     const c = country();
     if (p.soldOut) return `<span class="soldout">Temporarily sold out</span><a class="btn btn-ghost" href="${waLink(`Hi Petros, please tell me when ${p.name} (${p.size}) is back in stock.`)}" target="_blank" rel="noopener">Notify me on WhatsApp</a>`;
     const href = c.shop || waLink(`Hi Petros, I'm in ${placeName()} and I'd like to order ${p.name} (${p.size}).`);
-    return `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>`;
+    return `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>${c.shop ? `<span class="hint">Opens my NeoLife shop. Check that ${esc(c.name)} is selected as your country there.</span>` : ""}`;
   }
   function card(p){
     return `<article class="prod"><span class="need">${esc(p.need)}</span><h3><a class="plink" href="${root}products/${p.slug}.html">${esc(p.name)}</a></h3><span class="size">${esc(p.size)}</span><p>${esc(p.desc)}</p>${priceHtml(p)}<div class="acts">${actionHtml(p)}<a class="more" href="${root}products/${p.slug}.html">Full details →</a></div></article>`;

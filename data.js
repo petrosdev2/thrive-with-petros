@@ -5,38 +5,38 @@ window.SITE = {
   "NG": {
    "name": "Nigeria",
    "currency": "NGN",
-   "shop": "https://example.com/ng-shop",
-   "register": "https://example.com/ng-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "GH": {
    "name": "Ghana",
    "currency": "GHS",
-   "shop": "https://example.com/gh-shop",
-   "register": "https://example.com/gh-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "GB": {
    "name": "United Kingdom",
    "currency": "GBP",
-   "shop": "https://example.com/uk-shop",
-   "register": "https://example.com/uk-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "US": {
    "name": "United States",
    "currency": "USD",
-   "shop": "https://example.com/us-shop",
-   "register": "https://example.com/us-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "CA": {
    "name": "Canada",
    "currency": "CAD",
-   "shop": "https://example.com/ca-shop",
-   "register": "https://example.com/ca-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "ZA": {
    "name": "South Africa",
    "currency": "ZAR",
-   "shop": "https://example.com/za-shop",
-   "register": "https://example.com/za-register"
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
   "OTHER": {
    "name": "Another country",

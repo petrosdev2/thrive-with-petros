@@ -141,3 +141,4 @@ footer .wrap{display:grid;gap:10px}
 .pd-note{font-size:.88rem;color:var(--muted)}
 .pd-note a{color:var(--leaf);font-weight:600}
 .sheet{color:var(--leaf);font-weight:600}
+.hint{flex-basis:100%;font-size:.8rem;color:var(--muted)}
