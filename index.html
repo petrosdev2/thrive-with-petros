@@ -65,11 +65,20 @@ select,input{font:500 15px var(--body);color:var(--ink);background:var(--surface
 .trust span::before{content:"✓ ";color:var(--leaf);font-weight:700}
 
 /* products */
-.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px}
+.head{margin-bottom:24px}
 .head .lead{margin-top:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:500 14px var(--body);cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--leaf);color:var(--leaf-ink);border-color:var(--leaf)}
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+.tools input{flex:1 1 240px;min-width:0}
+.count{color:var(--muted);font-size:.9rem}
+.chips{margin-bottom:24px}
+.prod .size{font-size:.85rem;color:var(--muted);margin-top:-6px}
+.prices{display:grid;gap:2px;margin-top:auto;font-variant-numeric:tabular-nums}
+.prices .retail{font-weight:600;font-size:1.05rem}
+.prices .member{font-size:.85rem;color:var(--leaf)}
+.soldout{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
 .prod{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .prod .need{align-self:flex-start;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--tint);color:var(--leaf);padding:4px 10px;border-radius:999px}
@@ -151,12 +160,16 @@ footer .wrap{display:grid;gap:10px}
         <div>
           <p class="eyebrow">Door 1 · Products</p>
           <h2>Shop by what you need</h2>
-          <p class="lead">Prices and stock depend on your country. Every order button opens the official shop for <strong id="cname">your country</strong> with me as your sponsor.</p>
+          <p class="lead">The full NeoLife range, sorted by what it supports. Every order button opens the official shop for <strong id="cname">your country</strong> with me as your sponsor. Registered members buy at the lower member price.</p>
         </div>
-        <div class="chips" id="chips" role="group" aria-label="Filter by need"></div>
       </div>
+      <div class="tools">
+        <input id="q" type="search" placeholder="Search products, e.g. omega, zinc, fibre" aria-label="Search products">
+        <span class="count" id="count"></span>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by need"></div>
       <div class="shelf" id="shelf"></div>
-      <p class="note">These products are dietary supplements, not medicines. They are not intended to diagnose, treat, cure or prevent any disease. Speak with your doctor if you are pregnant, nursing, on medication or have a medical condition.</p>
+      <p class="note">Nigeria prices are from the NeoLife Nigeria shop and may change; the shop shows the current price at checkout. These products are dietary supplements, not medicines. They are not intended to diagnose, treat, cure or prevent any disease. Speak with your doctor if you are pregnant, nursing, on medication or have a medical condition.</p>
     </div>
   </section>
 
@@ -238,13 +251,47 @@ const COUNTRIES = {
   OTHER:{name:"Another country",currency:"",shop:"",register:""}
 };
 const PRODUCTS = [
-  {name:"Pro Vitality",need:"Daily foundation",desc:"A daily pack combining a multivitamin, omega-3 and phytonutrients, to support overall wellbeing."},
-  {name:"Tre-en-en Grain Concentrates",need:"Energy",desc:"Whole-grain concentrates that support how your body uses the nutrients from food."},
-  {name:"Omega-3 Salmon Oil Plus",need:"Heart health",desc:"Fish oil with EPA and DHA to support heart and brain health."},
-  {name:"Carotenoid Complex",need:"Immunity",desc:"Carotenoids from fruits and vegetables to support your natural defences."},
-  {name:"NeoLifeShake",need:"Weight management",desc:"A protein shake that can replace a meal as part of a balanced eating plan."},
-  {name:"Kids' Chewable Vitamins",need:"Family",desc:"Chewable vitamins and minerals made for children's daily needs."}
-];
+  // name, size, need, description, Nigeria retail, Nigeria distributor, sold out
+  ["Pro Vitality","30 sachets","Daily foundation","Daily pack with a multivitamin, omega-3 and whole-food phytonutrients in one sachet.",101660,84030],
+  ["Tre-en-en Grain Concentrates","120 capsules","Daily foundation","Whole-grain concentrates that support how your body uses the nutrients from food.",53200,46750],
+  ["Tre-en-en Grain Concentrates","60 capsules","Daily foundation","The smaller pack of Tre-en-en, a good way to start.",30120,26470],
+  ["Formula IV Plus","60 sachets","Daily foundation","Daily vitamins, minerals and Tre-en-en grain concentrates in sachets.",83660,71370],
+  ["Formula IV Plus","30 sachets","Daily foundation","One-month pack of Formula IV Plus.",50440,42970,true],
+  ["PhytoDefence","30 sachets","Immunity","Daily phytonutrient pack drawn from fruits and vegetables, to support your natural defences.",157030,133730],
+  ["Carotenoid Complex","90 capsules","Immunity","Carotenoids from fruits and vegetables to support immune health.",85900,72720],
+  ["Beta Guard","100 tablets","Immunity","Antioxidant blend of vitamins and minerals for daily protection.",72970,62360],
+  ["Flavonoid Complex","60 tablets","Immunity","Flavonoids from fruits and vegetables with antioxidant support.",43170,37000],
+  ["Vitamin C Sustained Release","100 tablets","Immunity","Vitamin C released slowly through the day.",40230,34560],
+  ["Omega-3","90 capsules","Heart health","Fish oil with EPA and DHA to support heart and brain health.",56580,47070],
+  ["CoQ10","Capsules","Heart health","Coenzyme Q10 to support cellular energy and heart health.",68750,56950],
+  ["Garlic Allium Complex","60 tablets","Heart health","Garlic supplement to support heart and circulation health.",35160,30110],
+  ["All Natural Fibre","510 g","Digestive health","Fibre mix you stir into food or drinks to add fibre to your day.",85100,72700],
+  ["Fibre Tablets","120 tablets","Digestive health","Fibre in tablet form, easy to take on the go.",33070,28210],
+  ["Aloe Vera Plus","Orange flavour","Digestive health","Aloe vera drink to include in your daily routine.",24340,20370],
+  ["Ami-Tone","90 tablets","Energy & fitness","Amino acid supplement to support muscle tone alongside exercise.",77620,66640],
+  ["NeoLifeTea","15 sticks","Energy & fitness","Instant tea drink with natural green tea for a refreshing lift.",79040,67400],
+  ["Wheat Germ Oil","60 capsules","Energy & fitness","Natural wheat germ oil, a source of vitamin E.",42020,35900],
+  ["Botanical Balance","60 tablets","Weight management","Botanical blend with cinnamon to support healthy glucose balance.",39220,32620],
+  ["Lipotropic Adjunct","90 tablets","Weight management","Nutrients that support the body's normal fat metabolism.",31150,26630],
+  ["Full Motion","90 tablets","Bone & joint","Joint support formula for comfortable, flexible movement.",58500,49940],
+  ["Chelated Cal-Mag with Vitamin D","90 tablets","Bone & joint","Calcium, magnesium and vitamin D for strong bones.",26480,22490],
+  ["Feminine Herbal Complex","60 tablets","Women's health","Herbal blend made for women's cyclical needs.",59050,51230],
+  ["Cruciferous Plus","60 tablets","Women's health","Concentrated cruciferous vegetables such as broccoli and cabbage.",38920,33260,true],
+  ["Masculine Herbal Complex","60 tablets","Men's health","Herbal blend made to support male vitality.",67960,59060],
+  ["Vita Guard","120 chewable tablets","Children","Chewable antioxidant tablets children enjoy.",69590,59870],
+  ["Vita Squares","180 chewable tablets","Children","Chewable vitamins and minerals for children's daily needs.",48420,40910],
+  ["Chewable All-C","90 tablets","Children","Chewable vitamin C, popular with children and adults.",37500,31970],
+  ["Smart 8 Plus","60 capsules","Sharper mind","Capsule supplement for daily wellbeing. Message me for full details.",31290,25870],
+  ["Vitamin B Complex Sustained Release","60 tablets","Vitamins & minerals","B vitamins released slowly through the day to support energy.",70810,60720,true],
+  ["Vitamin E 200 IU","60 capsules","Vitamins & minerals","Vitamin E with antioxidant support.",38950,33070],
+  ["Vegan D with Vitamin D2/D3","Tablets","Vitamins & minerals","Plant-sourced vitamin D for bones and immunity.",21120,17930],
+  ["Magnesium Complex","60 tablets","Vitamins & minerals","Magnesium to support muscles, nerves and energy.",23780,20160],
+  ["Chelated Zinc","100 tablets","Vitamins & minerals","Zinc in an easily absorbed form.",34000,28670],
+  ["Super 10 Fragranced","1 litre","Home & garden","Concentrated all-purpose cleaner for the home.",28070,23820],
+  ["Light Duty Cleaner (LDC)","1 litre","Home & garden","Gentle concentrated cleaner for dishes and delicate surfaces.",32860,27890],
+  ["Super Gro","1 litre","Home & garden","Plant nutrient concentrate for crops and gardens.",23040,19440],
+  ["Super Gro","5 litres","Home & garden","Larger pack of Super Gro for farms and big gardens.",99530,82280]
+].map(([name,size,need,desc,retail,dist,soldOut])=>({name,size,need,desc,retail,dist,soldOut:!!soldOut}));
 /* ==================================================== */
 
 const $ = s => document.querySelector(s);
@@ -262,17 +309,28 @@ function render(){
   $("#cname").textContent = c.name === "Another country" ? "your country" : c.name;
   const needs = ["All", ...new Set(PRODUCTS.map(p=>p.need))];
   $("#chips").innerHTML = needs.map(n=>`<button class="chip" type="button" aria-pressed="${n===filter}" data-need="${n}">${n}</button>`).join("");
-  $("#shelf").innerHTML = PRODUCTS.filter(p=>filter==="All"||p.need===filter).map(p=>{
-    const href = c.shop || waLink(`Hi Petros, I'm in ${c.name === "Another country" ? "(my country)" : c.name} and I'd like to order ${p.name}.`);
-    const price = c.currency ? `Price in ${c.currency} on the ${c.name} shop` : "Message me to check availability in your country";
-    return `<article class="prod"><span class="need">${p.need}</span><h3>${p.name}</h3><p>${p.desc}</p><span class="price">${price}</span><a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Ask on WhatsApp"}</a></article>`;
-  }).join("");
+  const q = ($("#q").value||"").trim().toLowerCase();
+  const list = PRODUCTS.filter(p=>(filter==="All"||p.need===filter) && (!q || (p.name+" "+p.need+" "+p.desc).toLowerCase().includes(q)));
+  $("#count").textContent = list.length + (list.length===1?" product":" products");
+  const fmt = n => "\u20A6" + n.toLocaleString("en-NG");
+  $("#shelf").innerHTML = list.length ? list.map(p=>{
+    const askMsg = `Hi Petros, I'm in ${c.name === "Another country" ? "(my country)" : c.name} and I'd like to order ${p.name} (${p.size}).`;
+    const href = c.shop || waLink(askMsg);
+    const prices = current==="NG"
+      ? `<div class="prices"><span class="retail">${fmt(p.retail)}</span><span class="member">Member price ${fmt(p.dist)}</span></div>`
+      : `<div class="prices"><span class="price">${c.currency ? "Price in "+c.currency+" on the "+c.name+" shop" : "Message me to check availability"}</span></div>`;
+    const action = p.soldOut
+      ? `<span class="soldout">Temporarily sold out</span><a class="btn btn-ghost" href="${waLink("Hi Petros, please tell me when "+p.name+" ("+p.size+") is back in stock.")}" target="_blank" rel="noopener">Notify me on WhatsApp</a>`
+      : `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>`;
+    return `<article class="prod"><span class="need">${p.need}</span><h3>${p.name}</h3><span class="size">${p.size}</span><p>${p.desc}</p>${prices}${action}</article>`;
+  }).join("") : `<p class="lead">No products match that search. Try another word, or <a href="${waLink("Hi Petros, I'm looking for a product to help with: ")}" target="_blank" rel="noopener">ask me on WhatsApp</a>.</p>`;
   const reg = $("#regBtn");
   reg.href = c.register || waLink("Hi Petros, I want to register but my country isn't listed. Can you help?");
   reg.textContent = c.register ? `Register through my link (${c.name})` : "Ask me about your country";
 }
 
 sel.addEventListener("change", ()=>{ current = sel.value; try{localStorage.setItem("country",current)}catch(e){}; render(); });
+$("#q").addEventListener("input", render);
 $("#chips").addEventListener("click", e=>{ const b = e.target.closest(".chip"); if(!b) return; filter = b.dataset.need; render(); });
 
 $("#leadForm").addEventListener("submit", e=>{
