@@ -14,6 +14,54 @@ window.SITE = {
    "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
    "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
+  "KE": {
+   "name": "Kenya",
+   "currency": "KES",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "UG": {
+   "name": "Uganda",
+   "currency": "UGX",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "TZ": {
+   "name": "Tanzania",
+   "currency": "TZS",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "ZM": {
+   "name": "Zambia",
+   "currency": "ZMW",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "CM": {
+   "name": "Cameroon",
+   "currency": "XAF",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "ZA": {
+   "name": "South Africa",
+   "currency": "ZAR",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "NA": {
+   "name": "Namibia",
+   "currency": "NAD",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
+  "BW": {
+   "name": "Botswana",
+   "currency": "BWP",
+   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
+   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
+  },
   "GB": {
    "name": "United Kingdom",
    "currency": "GBP",
@@ -32,15 +80,9 @@ window.SITE = {
    "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
    "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
   },
-  "ZA": {
-   "name": "South Africa",
-   "currency": "ZAR",
-   "shop": "https://shopneolife.com/thrivewithpetros/shop/products",
-   "register": "https://shopneolife.com/thrivewithpetros/enrollment/enrollmentconfiguration"
-  },
   "OTHER": {
    "name": "Another country",
-   "currency": "",
+   "currency": "USD",
    "shop": "",
    "register": ""
   }
@@ -709,5 +751,6 @@ window.SITE = {
    "use": "Mix 1 ml per litre of water and spray leaves and roots, early morning or late afternoon.",
    "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/SuperGro/fastfacts.pdf"
   }
- ]
+ ],
+ "SITE_URL": "https://thrive.petronixtechnology.com"
 };

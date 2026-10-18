@@ -4,22 +4,55 @@
   const $ = s => document.querySelector(s);
   const root = document.body.dataset.root || "";
   const esc = t => String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
-  const fmt = n => "₦" + n.toLocaleString("en-NG");
   const waLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
   let current = "NG", filter = "All";
 
+  /* Work out the visitor's country: their own choice first, then their device time zone, then browser language. */
+  const TZ = {"Africa/Lagos":"NG","Africa/Accra":"GH","Africa/Nairobi":"KE","Africa/Kampala":"UG","Africa/Dar_es_Salaam":"TZ",
+    "Africa/Lusaka":"ZM","Africa/Douala":"CM","Africa/Johannesburg":"ZA","Africa/Windhoek":"NA","Africa/Gaborone":"BW",
+    "Europe/London":"GB","America/Toronto":"CA","America/Vancouver":"CA","America/Edmonton":"CA","America/Winnipeg":"CA",
+    "America/Halifax":"CA","America/Regina":"CA","America/St_Johns":"CA","America/New_York":"US","America/Chicago":"US",
+    "America/Denver":"US","America/Los_Angeles":"US","America/Phoenix":"US","America/Anchorage":"US","Pacific/Honolulu":"US",
+    "America/Detroit":"US","America/Indiana/Indianapolis":"US","America/Boise":"US"};
+  function detectCountry(){
+    try { const saved = localStorage.getItem("country"); if (saved && COUNTRIES[saved]) return saved; } catch(e){}
+    try { const z = Intl.DateTimeFormat().resolvedOptions().timeZone; if (TZ[z]) return TZ[z]; } catch(e){}
+    for (const l of (navigator.languages || [navigator.language || ""])) {
+      const r = (l.split("-")[1] || "").toUpperCase(); if (COUNTRIES[r]) return r;
+    }
+    return "OTHER";
+  }
+  current = detectCountry();
+
   const sel = $("#country");
   for (const [code,c] of Object.entries(COUNTRIES)) sel.add(new Option(c.name, code));
-  try { const saved = localStorage.getItem("country"); if (saved && COUNTRIES[saved]) current = saved; } catch(e){}
   sel.value = current;
   const country = () => COUNTRIES[current];
   const placeName = () => country().name === "Another country" ? "my country" : country().name;
 
+  /* Prices are set in naira. For other countries we show an estimate using today's exchange rate. */
+  let rates = null;
+  function money(n, cur){
+    try { return new Intl.NumberFormat(undefined, {style:"currency", currency:cur, maximumFractionDigits: n >= 1000 ? 0 : 2}).format(n); }
+    catch(e){ return cur + " " + Math.round(n).toLocaleString(); }
+  }
+  const fmt = n => money(n, "NGN");
+  function loadRates(){
+    try {
+      const c = JSON.parse(localStorage.getItem("ngnRates") || "null");
+      if (c && Date.now() - c.t < 12*3600e3) { rates = c.r; return Promise.resolve(); }
+    } catch(e){}
+    return fetch("https://open.er-api.com/v6/latest/NGN").then(r=>r.json()).then(j=>{
+      if (j && j.result === "success") { rates = j.rates; try { localStorage.setItem("ngnRates", JSON.stringify({t:Date.now(), r:rates})); } catch(e){} }
+    }).catch(()=>{});
+  }
+
   function priceHtml(p){
     const c = country();
-    return current==="NG"
-      ? `<div class="prices"><span class="retail">${fmt(p.retail)}</span><span class="member">Member price ${fmt(p.dist)}</span></div>`
-      : `<div class="prices"><span class="price">${c.currency ? "Price in "+c.currency+" on the "+c.name+" shop" : "Message me to check availability"}</span></div>`;
+    if (current === "NG") return `<div class="prices"><span class="retail">${fmt(p.retail)}</span><span class="member">Member price ${fmt(p.dist)}</span></div>`;
+    const r = rates && rates[c.currency];
+    if (r) return `<div class="prices"><span class="retail">About ${money(p.retail*r, c.currency)}</span><span class="member">Member price about ${money(p.dist*r, c.currency)}</span><span class="est">Estimate from Nigeria prices. Your exact ${esc(c.currency)} price shows at checkout.</span></div>`;
+    return `<div class="prices"><span class="price">Price in ${esc(c.currency)} shown at checkout</span></div>`;
   }
   function actionHtml(p){
     const c = country();
@@ -78,4 +111,6 @@
 
   const wa = $("#wa"); if (wa) wa.textContent = "+" + WHATSAPP.replace(/^(\d{3})(\d{3})(\d{3})(\d{4})$/,"$1 $2 $3 $4");
   render();
+  if (current !== "NG") loadRates().then(render);
+  sel.addEventListener("change", ()=>{ if (current !== "NG" && !rates) loadRates().then(render); });
 })();

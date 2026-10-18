@@ -25,7 +25,20 @@ for p in data["PRODUCTS"]:
     sheet = (f'<p><a class="sheet" href="{e(p["sheet"])}" target="_blank" rel="noopener">'
              f'Read the official NeoLife fact sheet (PDF) →</a></p>') if p.get("sheet") else ""
     sold = '<p class="soldout">Temporarily sold out</p>' if p.get("soldOut") else ""
+    base = data["SITE_URL"].rstrip("/")
+    url = f'{base}/products/{p["slug"]}.html'
+    ld = {"@context":"https://schema.org","@type":"Product","name":f'{p["name"]} ({p["size"]})',
+          "description":p["desc"],"brand":{"@type":"Brand","name":"NeoLife"},"category":p["need"],
+          "image":f'{base}/images/products/{p["slug"]}.jpg',"url":url,
+          "offers":{"@type":"Offer","priceCurrency":"NGN","price":p["retail"],"url":url,
+                    "availability":"https://schema.org/OutOfStock" if p.get("soldOut") else "https://schema.org/InStock",
+                    "seller":{"@type":"Person","name":"Petros, Independent NeoLife Distributor"}}}
+    crumbs = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":base+"/"},
+          {"@type":"ListItem","position":2,"name":p["need"],"item":base+"/#products"},
+          {"@type":"ListItem","position":3,"name":p["name"],"item":url}]}
     page = (TEMPLATE
+            .replace("{{seo}}", f'<link rel="canonical" href="{url}">\n<meta property="og:type" content="product">\n<meta property="og:url" content="{url}">\n<meta property="og:image" content="{base}/images/products/{p["slug"]}.jpg">\n<meta name="twitter:card" content="summary">\n<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n<script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>')
             .replace("{{slug}}", e(p["slug"]))
             .replace("{{name}}", e(p["name"]))
             .replace("{{size}}", e(p["size"]))
@@ -36,5 +49,52 @@ for p in data["PRODUCTS"]:
             .replace("{{sheet}}", sheet)
             .replace("{{sold}}", sold))
     (out / f'{p["slug"]}.html').write_text(page)
+
+# ---------- SEO: home page head, static product index, sitemap, robots ----------
+import re, datetime
+BASE = data["SITE_URL"].rstrip("/")
+today = datetime.date.today().isoformat()
+home_ld = {
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","name":"Thrive with Petros","url":BASE+"/"},
+    {"@type":"Person","name":"Petros","jobTitle":"Independent NeoLife Distributor","url":BASE+"/",
+     "email":"peter@petronixtechnology.com","telephone":"+"+data["WHATSAPP"]},
+    {"@type":"ItemList","name":"NeoLife products","itemListElement":[
+      {"@type":"ListItem","position":i+1,"url":f'{BASE}/products/{p["slug"]}.html',"name":f'{p["name"]} ({p["size"]})'}
+      for i,p in enumerate(data["PRODUCTS"])]}]}
+seo_head = f"""<!--SEO-HEAD-->
+<link rel="canonical" href="{BASE}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thrive with Petros">
+<meta property="og:title" content="NeoLife Supplements & Business Opportunity | Thrive with Petros">
+<meta property="og:description" content="Shop the full NeoLife range or start your own NeoLife business with free training. Worldwide.">
+<meta property="og:url" content="{BASE}/">
+<meta property="og:image" content="{BASE}/images/products/pro-vitality-30-sachets.jpg">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{json.dumps(home_ld, ensure_ascii=False)}</script>
+<!--/SEO-HEAD-->"""
+groups = {}
+for p in data["PRODUCTS"]:
+    groups.setdefault(p["need"], []).append(p)
+links = "".join(
+    f'<div><h3>{e(need)}</h3><ul>' + "".join(f'<li><a href="products/{p["slug"]}.html">{e(p["name"])} ({e(p["size"])})</a></li>' for p in items) + "</ul></div>"
+    for need, items in groups.items())
+product_index = f"""<!--PRODUCT-INDEX-->
+<section class="pindex" aria-labelledby="pindex-h">
+  <div class="wrap">
+    <h2 id="pindex-h">All NeoLife products</h2>
+    <div class="pindex-grid">{links}</div>
+  </div>
+</section>
+<!--/PRODUCT-INDEX-->"""
+idx = (ROOT / "index.html").read_text()
+idx = re.sub(r"<!--SEO-HEAD-->.*?<!--/SEO-HEAD-->", lambda m: seo_head, idx, flags=re.S)
+idx = re.sub(r"<!--PRODUCT-INDEX-->.*?<!--/PRODUCT-INDEX-->", lambda m: product_index, idx, flags=re.S)
+(ROOT / "index.html").write_text(idx)
+
+urls = [BASE + "/"] + [f'{BASE}/products/{p["slug"]}.html' for p in data["PRODUCTS"]]
+(ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls) + "</urlset>\n")
+(ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /tools/\n\nSitemap: {BASE}/sitemap.xml\n")
 
 print(f'Built data.js and {len(data["PRODUCTS"])} product pages.')
