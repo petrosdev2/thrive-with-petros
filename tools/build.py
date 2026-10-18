@@ -92,7 +92,7 @@ idx = re.sub(r"<!--SEO-HEAD-->.*?<!--/SEO-HEAD-->", lambda m: seo_head, idx, fla
 idx = re.sub(r"<!--PRODUCT-INDEX-->.*?<!--/PRODUCT-INDEX-->", lambda m: product_index, idx, flags=re.S)
 (ROOT / "index.html").write_text(idx)
 
-urls = [BASE + "/"] + [f'{BASE}/products/{p["slug"]}.html' for p in data["PRODUCTS"]]
+urls = [BASE + "/", BASE + "/guide.html"] + [f'{BASE}/products/{p["slug"]}.html' for p in data["PRODUCTS"]]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /tools/\n\nSitemap: {BASE}/sitemap.xml\n")

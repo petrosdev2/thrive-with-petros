@@ -105,8 +105,8 @@
     const name = $("#lname").value.trim(), phone = $("#lphone").value.trim();
     const ok = $("#leadOk"); ok.hidden = false;
     if(!name || !phone){ ok.textContent = "Please enter your name and WhatsApp number so I can send the guide."; return; }
-    const msg = `Hi Petros, I'm ${name} (${phone}) from ${country().name}. Please send me the free beginner's guide. I'm interested in: ${$("#linterest").value}.`;
-    ok.innerHTML = `Thanks, ${esc(name)}. Tap below to send your request to me on WhatsApp.<br><a class="btn btn-leaf" style="margin-top:10px" href="${waLink(msg)}" target="_blank" rel="noopener">Open WhatsApp</a>`;
+    const msg = `Hi Petros, I'm ${name} (${phone}) from ${country().name}. I've got your free beginner's guide. I'm interested in: ${$("#linterest").value}.`;
+    ok.innerHTML = `<strong>Thanks, ${esc(name)}. Your guide is ready.</strong><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"><a class="btn btn-leaf" href="${root}guide.html">Read the guide</a><a class="btn btn-ghost" href="${waLink(msg)}" target="_blank" rel="noopener">Send my details on WhatsApp</a></div><p style="margin-top:8px;font-size:.85rem">Sending your details lets me answer your questions and add you to the next free training.</p>`;
   });
 
   const wa = $("#wa"); if (wa) wa.textContent = "+" + WHATSAPP.replace(/^(\d{3})(\d{3})(\d{3})(\d{4})$/,"$1 $2 $3 $4");
