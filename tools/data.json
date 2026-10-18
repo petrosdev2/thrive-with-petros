@@ -1,0 +1,712 @@
+{
+ "WHATSAPP": "2348160608194",
+ "COUNTRIES": {
+  "NG": {
+   "name": "Nigeria",
+   "currency": "NGN",
+   "shop": "https://example.com/ng-shop",
+   "register": "https://example.com/ng-register"
+  },
+  "GH": {
+   "name": "Ghana",
+   "currency": "GHS",
+   "shop": "https://example.com/gh-shop",
+   "register": "https://example.com/gh-register"
+  },
+  "GB": {
+   "name": "United Kingdom",
+   "currency": "GBP",
+   "shop": "https://example.com/uk-shop",
+   "register": "https://example.com/uk-register"
+  },
+  "US": {
+   "name": "United States",
+   "currency": "USD",
+   "shop": "https://example.com/us-shop",
+   "register": "https://example.com/us-register"
+  },
+  "CA": {
+   "name": "Canada",
+   "currency": "CAD",
+   "shop": "https://example.com/ca-shop",
+   "register": "https://example.com/ca-register"
+  },
+  "ZA": {
+   "name": "South Africa",
+   "currency": "ZAR",
+   "shop": "https://example.com/za-shop",
+   "register": "https://example.com/za-register"
+  },
+  "OTHER": {
+   "name": "Another country",
+   "currency": "",
+   "shop": "",
+   "register": ""
+  }
+ },
+ "PRODUCTS": [
+  {
+   "name": "Pro Vitality",
+   "size": "30 sachets",
+   "need": "Daily foundation",
+   "desc": "Daily pack with a multivitamin, omega-3 and whole-food phytonutrients in one sachet.",
+   "retail": 101660,
+   "dist": 84030,
+   "soldOut": false,
+   "slug": "pro-vitality-30-sachets",
+   "features": [
+    "21 vitamins and minerals",
+    "Omega-3 fish oil in every sachet",
+    "Carotenoids and whole-grain lipids from plants"
+   ],
+   "use": "One sachet a day with a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/ProVitality/fastfacts.pdf"
+  },
+  {
+   "name": "Tre-en-en Grain Concentrates",
+   "size": "120 capsules",
+   "need": "Daily foundation",
+   "desc": "Whole-grain concentrates that support how your body uses the nutrients from food.",
+   "retail": 53200,
+   "dist": 46750,
+   "soldOut": false,
+   "slug": "tre-en-en-grain-concentrates-120-capsules",
+   "features": [
+    "Plant lipids and sterols from wheat germ, rice bran and soybeans",
+    "Processed at low temperature to protect the nutrients",
+    "Natural vitamin E keeps the oils fresh"
+   ],
+   "use": "1 to 3 capsules a day with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/TreEnEn/fastfacts.pdf"
+  },
+  {
+   "name": "Tre-en-en Grain Concentrates",
+   "size": "60 capsules",
+   "need": "Daily foundation",
+   "desc": "The smaller pack of Tre-en-en, a good way to start.",
+   "retail": 30120,
+   "dist": 26470,
+   "soldOut": false,
+   "slug": "tre-en-en-grain-concentrates-60-capsules",
+   "features": [
+    "Plant lipids and sterols from wheat germ, rice bran and soybeans",
+    "Processed at low temperature to protect the nutrients",
+    "Natural vitamin E keeps the oils fresh"
+   ],
+   "use": "1 to 3 capsules a day with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/TreEnEn/fastfacts.pdf"
+  },
+  {
+   "name": "Formula IV Plus",
+   "size": "60 sachets",
+   "need": "Daily foundation",
+   "desc": "Daily vitamins, minerals and Tre-en-en grain concentrates in sachets.",
+   "retail": 83660,
+   "dist": 71370,
+   "soldOut": false,
+   "slug": "formula-iv-plus-60-sachets",
+   "features": [
+    "Iron-free vitamins and minerals",
+    "Plant enzymes to help digestion",
+    "Tre-en-en grain concentrates in every serving"
+   ],
+   "use": "One sachet a day with a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/za/product/FormulaIVPlus/fastfacts.pdf"
+  },
+  {
+   "name": "Formula IV Plus",
+   "size": "30 sachets",
+   "need": "Daily foundation",
+   "desc": "One-month pack of Formula IV Plus.",
+   "retail": 50440,
+   "dist": 42970,
+   "soldOut": true,
+   "slug": "formula-iv-plus-30-sachets",
+   "features": [
+    "Iron-free vitamins and minerals",
+    "Plant enzymes to help digestion",
+    "Tre-en-en grain concentrates in every serving"
+   ],
+   "use": "One sachet a day with a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/za/product/FormulaIVPlus/fastfacts.pdf"
+  },
+  {
+   "name": "PhytoDefence",
+   "size": "30 sachets",
+   "need": "Immunity",
+   "desc": "Daily phytonutrient pack drawn from fruits and vegetables, to support your natural defences.",
+   "retail": 157030,
+   "dist": 133730,
+   "soldOut": false,
+   "slug": "phytodefence-30-sachets",
+   "features": [
+    "Carotenoid capsules from colourful fruits and vegetables",
+    "Flavonoid tablets from berries, citrus, grapes and green tea",
+    "A cruciferous tablet from kale, broccoli and similar vegetables"
+   ],
+   "use": "One pack a day with a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ca/product/PhytoDefense/fastfacts.pdf"
+  },
+  {
+   "name": "Carotenoid Complex",
+   "size": "90 capsules",
+   "need": "Immunity",
+   "desc": "Carotenoids from fruits and vegetables to support immune health.",
+   "retail": 85900,
+   "dist": 72720,
+   "soldOut": false,
+   "slug": "carotenoid-complex-90-capsules",
+   "features": [
+    "A blend of carotenoids from tomatoes, carrots, spinach and red peppers",
+    "Oil-based capsules for better absorption",
+    "No synthetic colours, flavours or preservatives"
+   ],
+   "use": "3 capsules a day.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/za/product/CarotenoidComplex/fastfacts.pdf"
+  },
+  {
+   "name": "Beta Guard",
+   "size": "100 tablets",
+   "need": "Immunity",
+   "desc": "Antioxidant blend of vitamins and minerals for daily protection.",
+   "retail": 72970,
+   "dist": 62360,
+   "soldOut": false,
+   "slug": "beta-guard-100-tablets",
+   "features": [
+    "Beta-carotene and other carotenoids, with whole-food vitamins C and E",
+    "B vitamins that help the body process foreign substances",
+    "Zinc, selenium and chromium in an easily absorbed form"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": null
+  },
+  {
+   "name": "Flavonoid Complex",
+   "size": "60 tablets",
+   "need": "Immunity",
+   "desc": "Flavonoids from fruits and vegetables with antioxidant support.",
+   "retail": 43170,
+   "dist": 37000,
+   "soldOut": false,
+   "slug": "flavonoid-complex-60-tablets",
+   "features": [
+    "Extracts from nine sources, including cranberry, kale, green tea and grapes",
+    "Several types of flavonoids",
+    "Added vitamin C"
+   ],
+   "use": "1 to 2 tablets a day.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/Flavonoid/fastfacts.pdf"
+  },
+  {
+   "name": "Vitamin C Sustained Release",
+   "size": "100 tablets",
+   "need": "Immunity",
+   "desc": "Vitamin C released slowly through the day.",
+   "retail": 40230,
+   "dist": 34560,
+   "soldOut": false,
+   "slug": "vitamin-c-sustained-release-100-tablets",
+   "features": [
+    "High-purity vitamin C released over several hours",
+    "Citrus bioflavonoids from buckwheat, grapefruit and lemon",
+    "Gentle on the stomach"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/AllC/fastfacts.pdf"
+  },
+  {
+   "name": "Omega-3",
+   "size": "90 capsules",
+   "need": "Heart health",
+   "desc": "Fish oil with EPA and DHA to support heart and brain health.",
+   "retail": 56580,
+   "dist": 47070,
+   "soldOut": false,
+   "slug": "omega-3-90-capsules",
+   "features": [
+    "Concentrated salmon oil with EPA and DHA",
+    "The full family of eight omega-3 fats",
+    "No added vitamin A or D"
+   ],
+   "use": "3 capsules a day with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/SalmonOilPlus/fastfacts.pdf"
+  },
+  {
+   "name": "CoQ10",
+   "size": "Capsules",
+   "need": "Heart health",
+   "desc": "Coenzyme Q10 to support cellular energy and heart health.",
+   "retail": 68750,
+   "dist": 56950,
+   "soldOut": false,
+   "slug": "coq10-capsules",
+   "features": [
+    "50 mg of coenzyme Q10 per capsule",
+    "Rice tocotrienols, plant sterols and grape polyphenols",
+    "L-cysteine to support the body's own antioxidants"
+   ],
+   "use": "2 capsules a day with a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/CoQ10/fastfacts.pdf"
+  },
+  {
+   "name": "Garlic Allium Complex",
+   "size": "60 tablets",
+   "need": "Heart health",
+   "desc": "Garlic supplement to support heart and circulation health.",
+   "retail": 35160,
+   "dist": 30110,
+   "soldOut": false,
+   "slug": "garlic-allium-complex-60-tablets",
+   "features": [
+    "Garlic, onion, chive and leek extracts",
+    "Standardised allicin content",
+    "Coated tablet that reduces garlic breath"
+   ],
+   "use": "2 tablets a day.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ke/product/GarlicAlliumComplex/fastfacts.pdf"
+  },
+  {
+   "name": "All Natural Fibre",
+   "size": "510 g",
+   "need": "Digestive health",
+   "desc": "Fibre mix you stir into food or drinks to add fibre to your day.",
+   "retail": 85100,
+   "dist": 72700,
+   "soldOut": false,
+   "slug": "all-natural-fibre-510-g",
+   "features": [
+    "Soluble and insoluble fibre from twelve whole-food sources",
+    "6 g of fibre per serving",
+    "No artificial additives"
+   ],
+   "use": "Stir 3 tablespoons into a glass of milk, water or juice, or add to recipes.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/AllNaturalFiber/fastfacts.pdf"
+  },
+  {
+   "name": "Fibre Tablets",
+   "size": "120 tablets",
+   "need": "Digestive health",
+   "desc": "Fibre in tablet form, easy to take on the go.",
+   "retail": 33070,
+   "dist": 28210,
+   "soldOut": false,
+   "slug": "fibre-tablets-120-tablets",
+   "features": [
+    "Soluble and insoluble fibre from fruits, vegetables, grains and legumes",
+    "2 g of fibre per 4 tablets",
+    "No caffeine, sodium or artificial additives"
+   ],
+   "use": "4 tablets with a full glass of water about 30 minutes before a meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/cm/product/FibreTablets/fastfacts.pdf"
+  },
+  {
+   "name": "Aloe Vera Plus",
+   "size": "Orange flavour",
+   "need": "Digestive health",
+   "desc": "Aloe vera drink to include in your daily routine.",
+   "retail": 24340,
+   "dist": 20370,
+   "soldOut": false,
+   "slug": "aloe-vera-plus-orange-flavour",
+   "features": [
+    "Inner aloe vera gel only, without the bitter outer leaf",
+    "Black tea, ginseng and chamomile",
+    "Lightly sparkling and lightly sweetened"
+   ],
+   "use": "50 to 100 ml a day. Keep in the fridge after opening.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/AloeVeraPlus/fastfacts.pdf"
+  },
+  {
+   "name": "Ami-Tone",
+   "size": "90 tablets",
+   "need": "Energy & fitness",
+   "desc": "Amino acid supplement to support muscle tone alongside exercise.",
+   "retail": 77620,
+   "dist": 66640,
+   "soldOut": false,
+   "slug": "ami-tone-90-tablets",
+   "features": [
+    "Free-form amino acids including L-arginine and L-ornithine",
+    "Chelated minerals with valerian and chickweed",
+    "Made to go with sensible eating and regular exercise"
+   ],
+   "use": "Take at bedtime, at least 3 hours after your last meal.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/gh/product/AmiTone/fastfacts.pdf"
+  },
+  {
+   "name": "NeoLifeTea",
+   "size": "15 sticks",
+   "need": "Energy & fitness",
+   "desc": "Instant tea drink with natural green tea for a refreshing lift.",
+   "retail": 79040,
+   "dist": 67400,
+   "soldOut": false,
+   "slug": "neolifetea-15-sticks",
+   "features": [
+    "Green, black and white tea extracts",
+    "Ginseng, codonopsis and rhodiola herbs",
+    "Lemon flavour, low in kilojoules"
+   ],
+   "use": "Mix one stick into hot or cold water.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/tz/product/NeoLifeTea/fastfacts.pdf"
+  },
+  {
+   "name": "Wheat Germ Oil",
+   "size": "60 capsules",
+   "need": "Energy & fitness",
+   "desc": "Natural wheat germ oil, a source of vitamin E.",
+   "retail": 42020,
+   "dist": 35900,
+   "soldOut": false,
+   "slug": "wheat-germ-oil-60-capsules",
+   "features": [
+    "Cold-pressed oil from wheat germ",
+    "A natural source of vitamin E",
+    "Soft, easy-to-swallow capsules"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": null
+  },
+  {
+   "name": "Botanical Balance",
+   "size": "60 tablets",
+   "need": "Weight management",
+   "desc": "Botanical blend with cinnamon to support healthy glucose balance.",
+   "retail": 39220,
+   "dist": 32620,
+   "soldOut": false,
+   "slug": "botanical-balance-60-tablets",
+   "features": [
+    "Cassia cinnamon",
+    "Turmeric and curcumin",
+    "Chromium and alpha-lipoic acid"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/BotanicalHealthyBalance/fastfacts.pdf"
+  },
+  {
+   "name": "Lipotropic Adjunct",
+   "size": "90 tablets",
+   "need": "Weight management",
+   "desc": "Nutrients that support the body's normal fat metabolism.",
+   "retail": 31150,
+   "dist": 26630,
+   "soldOut": false,
+   "slug": "lipotropic-adjunct-90-tablets",
+   "features": [
+    "Choline and inositol",
+    "Folic acid with vitamins B6 and B12",
+    "Betaine to support B12 absorption"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/LipotropicAdjunct/fastfacts.pdf"
+  },
+  {
+   "name": "Full Motion",
+   "size": "90 tablets",
+   "need": "Bone & joint",
+   "desc": "Joint support formula for comfortable, flexible movement.",
+   "retail": 58500,
+   "dist": 49940,
+   "soldOut": false,
+   "slug": "full-motion-90-tablets",
+   "features": [
+    "1,500 mg glucosamine per serving",
+    "Herbal blend with bromelain, white willow and boswellia",
+    "Zinc, boron and silica"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/za/product/FullMotion/fastfacts.pdf"
+  },
+  {
+   "name": "Chelated Cal-Mag with Vitamin D",
+   "size": "90 tablets",
+   "need": "Bone & joint",
+   "desc": "Calcium, magnesium and vitamin D for strong bones.",
+   "retail": 26480,
+   "dist": 22490,
+   "soldOut": false,
+   "slug": "chelated-cal-mag-with-vitamin-d-90-tablets",
+   "features": [
+    "Calcium and magnesium bonded to amino acids for absorption",
+    "2:1 calcium to magnesium ratio",
+    "Vitamin D3"
+   ],
+   "use": "Follow the label directions, with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/CalMag1000/fastfacts.pdf"
+  },
+  {
+   "name": "Feminine Herbal Complex",
+   "size": "60 tablets",
+   "need": "Women's health",
+   "desc": "Herbal blend made for women's cyclical needs.",
+   "retail": 59050,
+   "dist": 51230,
+   "soldOut": false,
+   "slug": "feminine-herbal-complex-60-tablets",
+   "features": [
+    "Wild yam, vitex and St John's wort",
+    "Made for women's monthly cycle",
+    "Plant-based ingredients"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/gh/product/FeminineHerbalComplex/fastfacts.pdf"
+  },
+  {
+   "name": "Cruciferous Plus",
+   "size": "60 tablets",
+   "need": "Women's health",
+   "desc": "Concentrated cruciferous vegetables such as broccoli and cabbage.",
+   "retail": 38920,
+   "dist": 33260,
+   "soldOut": true,
+   "slug": "cruciferous-plus-60-tablets",
+   "features": [
+    "Broccoli, radish, kale, mustard and watercress extracts",
+    "Sulforaphane",
+    "Orange, liquorice root and soybean extracts"
+   ],
+   "use": "One tablet a day.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/CruciferousPlus/fastfacts.pdf"
+  },
+  {
+   "name": "Masculine Herbal Complex",
+   "size": "60 tablets",
+   "need": "Men's health",
+   "desc": "Herbal blend made to support male vitality.",
+   "retail": 67960,
+   "dist": 59060,
+   "soldOut": false,
+   "slug": "masculine-herbal-complex-60-tablets",
+   "features": [
+    "Saw palmetto",
+    "St John's wort and skullcap",
+    "Damiana"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ke/product/MasculineHerbalComplex/fastfacts.pdf"
+  },
+  {
+   "name": "Vita Guard",
+   "size": "120 chewable tablets",
+   "need": "Children",
+   "desc": "Chewable antioxidant tablets children enjoy.",
+   "retail": 69590,
+   "dist": 59870,
+   "soldOut": false,
+   "slug": "vita-guard-120-chewable-tablets",
+   "features": [
+    "Flavonoids, vitamin C, carotenoids and the full vitamin E family",
+    "Selenium and zinc",
+    "Sweetened with fruit, no added sucrose or artificial additives"
+   ],
+   "use": "Chewable tablet for children who can chew. Follow the label.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/gh/product/VitaGuard/fastfacts.pdf"
+  },
+  {
+   "name": "Vita Squares",
+   "size": "180 chewable tablets",
+   "need": "Children",
+   "desc": "Chewable vitamins and minerals for children's daily needs.",
+   "retail": 48420,
+   "dist": 40910,
+   "soldOut": false,
+   "slug": "vita-squares-180-chewable-tablets",
+   "features": [
+    "Multivitamin and mineral for children aged 4 and up",
+    "Grain concentrate from wheat germ, rice bran and soybeans",
+    "Sweetened with fruit juice concentrates, not sucrose"
+   ],
+   "use": "3 tablets a day with food.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/VitaSquares/fastfacts.pdf"
+  },
+  {
+   "name": "Chewable All-C",
+   "size": "90 tablets",
+   "need": "Children",
+   "desc": "Chewable vitamin C, popular with children and adults.",
+   "retail": 37500,
+   "dist": 31970,
+   "soldOut": false,
+   "slug": "chewable-all-c-90-tablets",
+   "features": [
+    "Vitamin C with rose hips and acerola cherry",
+    "Citrus bioflavonoids",
+    "Pleasant chewable tablet for children and adults"
+   ],
+   "use": "Chew as directed on the label.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/AllC/fastfacts.pdf"
+  },
+  {
+   "name": "Smart 8 Plus",
+   "size": "60 capsules",
+   "need": "Sharper mind",
+   "desc": "Capsule supplement for daily wellbeing. Message me for full details.",
+   "retail": 31290,
+   "dist": 25870,
+   "soldOut": false,
+   "slug": "smart-8-plus-60-capsules",
+   "features": [
+    "Salmon oil with the full family of eight omega-3 fats",
+    "Same concentrate as the larger Omega-3 capsules",
+    "Smaller dose, convenient for daily use"
+   ],
+   "use": "2 capsules a day with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/SalmonOilPlus/fastfacts.pdf"
+  },
+  {
+   "name": "Vitamin B Complex Sustained Release",
+   "size": "60 tablets",
+   "need": "Vitamins & minerals",
+   "desc": "B vitamins released slowly through the day to support energy.",
+   "retail": 70810,
+   "dist": 60720,
+   "soldOut": true,
+   "slug": "vitamin-b-complex-sustained-release-60-tablets",
+   "features": [
+    "The B vitamin family in one tablet",
+    "Released slowly through the day",
+    "Supports normal energy release from food"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": null
+  },
+  {
+   "name": "Vitamin E 200 IU",
+   "size": "60 capsules",
+   "need": "Vitamins & minerals",
+   "desc": "Vitamin E with antioxidant support.",
+   "retail": 38950,
+   "dist": 33070,
+   "soldOut": false,
+   "slug": "vitamin-e-200-iu-60-capsules",
+   "features": [
+    "200 IU of vitamin E per capsule",
+    "Antioxidant support",
+    "Soft capsule"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": null
+  },
+  {
+   "name": "Vegan D with Vitamin D2/D3",
+   "size": "Tablets",
+   "need": "Vitamins & minerals",
+   "desc": "Plant-sourced vitamin D for bones and immunity.",
+   "retail": 21120,
+   "dist": 17930,
+   "soldOut": false,
+   "slug": "vegan-d-with-vitamin-d2-d3-tablets",
+   "features": [
+    "Vitamin D3 from lichen",
+    "Vitamin D2 from yeast and mushrooms",
+    "No animal ingredients"
+   ],
+   "use": "Follow the label directions.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/za/product/VeganD/fastfacts.pdf"
+  },
+  {
+   "name": "Magnesium Complex",
+   "size": "60 tablets",
+   "need": "Vitamins & minerals",
+   "desc": "Magnesium to support muscles, nerves and energy.",
+   "retail": 23780,
+   "dist": 20160,
+   "soldOut": false,
+   "slug": "magnesium-complex-60-tablets",
+   "features": [
+    "Several forms of magnesium, including glycinate and citrate",
+    "Plant blend of beet, kale, broccoli and radish",
+    "Vegan formula"
+   ],
+   "use": "1 to 2 tablets a day.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/Magnesium/fastfacts.pdf"
+  },
+  {
+   "name": "Chelated Zinc",
+   "size": "100 tablets",
+   "need": "Vitamins & minerals",
+   "desc": "Zinc in an easily absorbed form.",
+   "retail": 34000,
+   "dist": 28670,
+   "soldOut": false,
+   "slug": "chelated-zinc-100-tablets",
+   "features": [
+    "High-purity zinc",
+    "Bonded to amino acids for better absorption",
+    "GMO-free ingredients"
+   ],
+   "use": "Follow the label directions, with meals.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/Zinc/fastfacts.pdf"
+  },
+  {
+   "name": "Super 10 Fragranced",
+   "size": "1 litre",
+   "need": "Home & garden",
+   "desc": "Concentrated all-purpose cleaner for the home.",
+   "retail": 28070,
+   "dist": 23820,
+   "soldOut": false,
+   "slug": "super-10-fragranced-1-litre",
+   "features": [
+    "Penetrates, dissolves and lifts dirt",
+    "Rinses away with no sticky residue",
+    "Biodegradable, phosphate-free and non-flammable"
+   ],
+   "use": "Dilute with water: about 1 part to 10 for heavy jobs, 1 to 3 for very heavy jobs.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/gh/product/Super10/fastfacts.pdf"
+  },
+  {
+   "name": "Light Duty Cleaner (LDC)",
+   "size": "1 litre",
+   "need": "Home & garden",
+   "desc": "Gentle concentrated cleaner for dishes and delicate surfaces.",
+   "retail": 32860,
+   "dist": 27890,
+   "soldOut": false,
+   "slug": "light-duty-cleaner-1-litre",
+   "features": [
+    "Lifts grease and dirt",
+    "Rinses away with no soapy film",
+    "Gentle enough for delicate fabrics"
+   ],
+   "use": "Dilute before use, about 1 part LDC to 3 parts water for general cleaning.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/us/product/LDC/fastfacts.pdf"
+  },
+  {
+   "name": "Super Gro",
+   "size": "1 litre",
+   "need": "Home & garden",
+   "desc": "Plant nutrient concentrate for crops and gardens.",
+   "retail": 23040,
+   "dist": 19440,
+   "soldOut": false,
+   "slug": "super-gro-1-litre",
+   "features": [
+    "Helps water soak deeper into soil",
+    "Reduces water lost to runoff and evaporation",
+    "Makes fertiliser in the water work better"
+   ],
+   "use": "Mix 1 ml per litre of water and spray leaves and roots, early morning or late afternoon.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/SuperGro/fastfacts.pdf"
+  },
+  {
+   "name": "Super Gro",
+   "size": "5 litres",
+   "need": "Home & garden",
+   "desc": "Larger pack of Super Gro for farms and big gardens.",
+   "retail": 99530,
+   "dist": 82280,
+   "soldOut": false,
+   "slug": "super-gro-5-litres",
+   "features": [
+    "Helps water soak deeper into soil",
+    "Reduces water lost to runoff and evaporation",
+    "Makes fertiliser in the water work better"
+   ],
+   "use": "Mix 1 ml per litre of water and spray leaves and roots, early morning or late afternoon.",
+   "sheet": "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/ng/product/SuperGro/fastfacts.pdf"
+  }
+ ]
+}

@@ -7,122 +7,7 @@
 <title>Thrive with Petros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap">
-<style>
-/* Layout: two-door landing — split hero, need-based product shelf, numbered start path, lead capture */
-:root{
-  --bg:#f3f6f1; --surface:#ffffff; --ink:#14251b; --muted:#566a5c; --line:#d6e0d6;
-  --leaf:#1f6b3f; --leaf-ink:#ffffff; --citrus:#f2b705; --citrus-ink:#2a2100; --tint:#e3eee4;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f1712; --surface:#17221b; --ink:#e6efe7; --muted:#a2b5a7; --line:#2a3a2f;
-  --leaf:#4fbf7d; --leaf-ink:#08140c; --citrus:#f5c533; --citrus-ink:#221b00; --tint:#1c2c22; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f1712; --surface:#17221b; --ink:#e6efe7; --muted:#a2b5a7; --line:#2a3a2f;
-  --leaf:#4fbf7d; --leaf-ink:#08140c; --citrus:#f5c533; --citrus-ink:#221b00; --tint:#1c2c22; color-scheme:dark}
-
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body)}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
-h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800}
-h3{font-size:1.2rem;font-weight:600}
-p{margin:0}
-a{color:inherit}
-.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf)}
-.lead{color:var(--muted);max-width:60ch}
-section{padding-block:clamp(48px,8vw,88px)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;font:600 15px/1 var(--body)}
-.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--citrus);outline-offset:2px}
-.btn-leaf{background:var(--leaf);color:var(--leaf-ink)}
-.btn-citrus{background:var(--citrus);color:var(--citrus-ink)}
-.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
-
-/* top bar */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none}
-.mark{width:34px;height:34px;border-radius:10px;background:var(--leaf);color:var(--leaf-ink);display:grid;place-items:center;font-size:.9rem}
-.country{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted)}
-select,input{font:500 15px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-
-/* hero */
-.hero{padding-block:clamp(40px,7vw,72px) 0}
-.hero h1{font-size:clamp(2.3rem,6vw,4.2rem);font-weight:800;letter-spacing:-.02em;max-width:16ch}
-.hero h1 em{font-style:normal;color:var(--leaf)}
-.hero .lead{margin-top:16px;font-size:1.1rem}
-.doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px}
-.door{border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.door-a{background:var(--leaf);color:var(--leaf-ink)}
-.door-b{background:var(--citrus);color:var(--citrus-ink)}
-.door .tag{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
-.door h2{font-size:clamp(1.5rem,3vw,2rem)}
-.door p{opacity:.9;max-width:42ch}
-.door .btn{align-self:flex-start;margin-top:auto;background:var(--surface);color:var(--ink)}
-.trust{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px;color:var(--muted);font-size:.9rem}
-.trust span::before{content:"✓ ";color:var(--leaf);font-weight:700}
-
-/* products */
-.head{margin-bottom:24px}
-.head .lead{margin-top:10px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font:500 14px var(--body);cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--leaf);color:var(--leaf-ink);border-color:var(--leaf)}
-.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
-.tools input{flex:1 1 240px;min-width:0}
-.count{color:var(--muted);font-size:.9rem}
-.chips{margin-bottom:24px}
-.prod .size{font-size:.85rem;color:var(--muted);margin-top:-6px}
-.prices{display:grid;gap:2px;margin-top:auto;font-variant-numeric:tabular-nums}
-.prices .retail{font-weight:600;font-size:1.05rem}
-.prices .member{font-size:.85rem;color:var(--leaf)}
-.soldout{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.prod details{padding:0;border:0;background:transparent;border-radius:0}
-.prod summary{font-size:.9rem;color:var(--leaf);padding-block:4px}
-.prod details ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.9rem;display:grid;gap:4px}
-.prod details .use{margin-top:8px;font-size:.9rem;color:var(--ink)}
-.prod details .sheet{display:inline-block;margin-top:8px;font-size:.88rem;color:var(--leaf);font-weight:600}
-.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.prod{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.prod .need{align-self:flex-start;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--tint);color:var(--leaf);padding:4px 10px;border-radius:999px}
-.prod p{color:var(--muted);font-size:.95rem}
-.prod .price{font-size:.88rem;color:var(--muted);margin-top:auto;font-variant-numeric:tabular-nums}
-.prod .btn{justify-content:center}
-.note{margin-top:18px;font-size:.85rem;color:var(--muted)}
-
-/* start path */
-.start{background:var(--tint)}
-.path{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px;counter-reset:step}
-.step{background:var(--surface);border-radius:18px;padding:24px;min-width:0}
-.step::before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--citrus);color:var(--citrus-ink);font:800 1.1rem var(--display);margin-bottom:14px}
-.step p{color:var(--muted);margin-top:8px;font-size:.95rem}
-.earn{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:40px}
-.earn div{border-top:3px solid var(--leaf);padding-top:14px}
-.earn p{color:var(--muted);margin-top:6px}
-
-/* faq */
-.faq{display:grid;gap:10px;margin-top:28px;max-width:820px}
-details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
-summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary::after{content:"+";font-weight:700;color:var(--leaf)}
-details[open] summary::after{content:"–"}
-details p{color:var(--muted);margin-top:10px}
-
-/* lead */
-.leadbox{background:var(--leaf);color:var(--leaf-ink);border-radius:26px;padding:clamp(24px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;align-items:center}
-.leadbox .lead{color:inherit;opacity:.88;margin-top:12px}
-.leadbox form{display:grid;gap:12px;min-width:0}
-.leadbox label{font-size:.85rem;font-weight:600;display:grid;gap:6px}
-.leadbox input,.leadbox select{width:100%}
-.ok{background:var(--surface);color:var(--ink);border-radius:14px;padding:16px;font-size:.95rem}
-
-footer{border-top:1px solid var(--line);padding-block:32px;color:var(--muted);font-size:.85rem}
-footer .wrap{display:grid;gap:10px}
-.contact{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--ink);font-weight:500}
-@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-1px)}}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -165,7 +50,7 @@ footer .wrap{display:grid;gap:10px}
         <div>
           <p class="eyebrow">Door 1 · Products</p>
           <h2>Shop by what you need</h2>
-          <p class="lead">The full NeoLife range, sorted by what it supports. Every order button opens the official shop for <strong id="cname">your country</strong> with me as your sponsor. Registered members buy at the lower member price.</p>
+          <p class="lead">The full NeoLife range, sorted by what it supports. Every order button opens the official shop for <strong data-cname>your country</strong> with me as your sponsor. Registered members buy at the lower member price.</p>
         </div>
       </div>
       <div class="tools">
@@ -198,6 +83,21 @@ footer .wrap{display:grid;gap:10px}
         <a class="btn btn-leaf" id="regBtn" href="#" target="_blank" rel="noopener">Register through my link</a>
         <a class="btn btn-ghost" href="#guide">Get the free guide first</a>
       </div>
+    </div>
+  </section>
+
+  <section id="athletes" class="athletes">
+    <div class="wrap">
+      <p class="eyebrow">Who uses NeoLife</p>
+      <h2>Trusted by professional athletes</h2>
+      <p class="lead" style="margin-top:12px">NeoLife works with sportspeople across Africa. Here is what some of them have shared publicly about the products they use.</p>
+      <div class="ath-grid">
+        <article class="ath"><h3>David Miller</h3><p class="ath-role">South African cricketer</p><p>Travels often and takes Pro Vitality and Zinc on the road. His favourite NeoLife product is the SPORT Performance Protein shake.</p><p class="ath-src">Shared by NeoLife</p></article>
+        <article class="ath"><h3>Burger Odendaal</h3><p class="ath-role">South African rugby player, former Bulls captain</p><p>Takes Pro Vitality, Cal-Mag and PhytoDefence every day, and says the routine is easy to keep.</p><p class="ath-src"><a href="https://focus.neolife.com/blog/athlete-burger-odendaal/" target="_blank" rel="noopener">Read his story on NeoLife →</a></p></article>
+        <article class="ath"><h3>Lisa Blackburn</h3><p class="ath-role">Professional swimmer</p><p>Uses Pro Vitality, Full Motion and Chewable All-C, and credits her nutrition with helping her recover and stay focused in training.</p><p class="ath-src"><a href="https://focus.neolife.com/blog/athlete-spotlight-lisa/" target="_blank" rel="noopener">Read her story on NeoLife →</a></p></article>
+        <article class="ath"><h3>Namibia national cricket team</h3><p class="ath-role">The Eagles</p><p>NeoLife has been the nutrition sponsor of Namibia's men's cricket team, supplying products to the squad at tournaments.</p><p class="ath-src"><a href="https://cricketnamibia.com/neolife-extends-partnership-with-the-eagles/" target="_blank" rel="noopener">Read on Cricket Namibia →</a></p></article>
+      </div>
+      <p class="note">Some products these athletes mention may not be sold in every country. Results vary from person to person.</p>
     </div>
   </section>
 
@@ -238,162 +138,13 @@ footer .wrap{display:grid;gap:10px}
 
 <footer>
   <div class="wrap">
-    <div class="contact"><span>WhatsApp: <span id="wa">+234 816 060 8194</span></span><span>Email: peter@petronixtechnology.com</span></div>
+    <div class="contact"><span>WhatsApp: <span id="wa"></span></span><span>Email: peter@petronixtechnology.com</span></div>
     <p>Petros is an Independent NeoLife Distributor. This is a personal website and is not operated or endorsed by NeoLife International. Product orders and registrations are processed by NeoLife in each country. Income depends on individual effort and is not guaranteed.</p>
   </div>
 </footer>
 
-<script>
-/* ===== EDIT THESE: your real links per country ===== */
-const WHATSAPP = "2348160608194"; // digits only, with country code
-const COUNTRIES = {
-  NG:{name:"Nigeria",currency:"NGN",shop:"https://example.com/ng-shop",register:"https://example.com/ng-register"},
-  GH:{name:"Ghana",currency:"GHS",shop:"https://example.com/gh-shop",register:"https://example.com/gh-register"},
-  GB:{name:"United Kingdom",currency:"GBP",shop:"https://example.com/uk-shop",register:"https://example.com/uk-register"},
-  US:{name:"United States",currency:"USD",shop:"https://example.com/us-shop",register:"https://example.com/us-register"},
-  CA:{name:"Canada",currency:"CAD",shop:"https://example.com/ca-shop",register:"https://example.com/ca-register"},
-  ZA:{name:"South Africa",currency:"ZAR",shop:"https://example.com/za-shop",register:"https://example.com/za-register"},
-  OTHER:{name:"Another country",currency:"",shop:"",register:""}
-};
-const PRODUCTS = [
-  // name, size, need, description, Nigeria retail, Nigeria distributor, sold out
-  ["Pro Vitality","30 sachets","Daily foundation","Daily pack with a multivitamin, omega-3 and whole-food phytonutrients in one sachet.",101660,84030],
-  ["Tre-en-en Grain Concentrates","120 capsules","Daily foundation","Whole-grain concentrates that support how your body uses the nutrients from food.",53200,46750],
-  ["Tre-en-en Grain Concentrates","60 capsules","Daily foundation","The smaller pack of Tre-en-en, a good way to start.",30120,26470],
-  ["Formula IV Plus","60 sachets","Daily foundation","Daily vitamins, minerals and Tre-en-en grain concentrates in sachets.",83660,71370],
-  ["Formula IV Plus","30 sachets","Daily foundation","One-month pack of Formula IV Plus.",50440,42970,true],
-  ["PhytoDefence","30 sachets","Immunity","Daily phytonutrient pack drawn from fruits and vegetables, to support your natural defences.",157030,133730],
-  ["Carotenoid Complex","90 capsules","Immunity","Carotenoids from fruits and vegetables to support immune health.",85900,72720],
-  ["Beta Guard","100 tablets","Immunity","Antioxidant blend of vitamins and minerals for daily protection.",72970,62360],
-  ["Flavonoid Complex","60 tablets","Immunity","Flavonoids from fruits and vegetables with antioxidant support.",43170,37000],
-  ["Vitamin C Sustained Release","100 tablets","Immunity","Vitamin C released slowly through the day.",40230,34560],
-  ["Omega-3","90 capsules","Heart health","Fish oil with EPA and DHA to support heart and brain health.",56580,47070],
-  ["CoQ10","Capsules","Heart health","Coenzyme Q10 to support cellular energy and heart health.",68750,56950],
-  ["Garlic Allium Complex","60 tablets","Heart health","Garlic supplement to support heart and circulation health.",35160,30110],
-  ["All Natural Fibre","510 g","Digestive health","Fibre mix you stir into food or drinks to add fibre to your day.",85100,72700],
-  ["Fibre Tablets","120 tablets","Digestive health","Fibre in tablet form, easy to take on the go.",33070,28210],
-  ["Aloe Vera Plus","Orange flavour","Digestive health","Aloe vera drink to include in your daily routine.",24340,20370],
-  ["Ami-Tone","90 tablets","Energy & fitness","Amino acid supplement to support muscle tone alongside exercise.",77620,66640],
-  ["NeoLifeTea","15 sticks","Energy & fitness","Instant tea drink with natural green tea for a refreshing lift.",79040,67400],
-  ["Wheat Germ Oil","60 capsules","Energy & fitness","Natural wheat germ oil, a source of vitamin E.",42020,35900],
-  ["Botanical Balance","60 tablets","Weight management","Botanical blend with cinnamon to support healthy glucose balance.",39220,32620],
-  ["Lipotropic Adjunct","90 tablets","Weight management","Nutrients that support the body's normal fat metabolism.",31150,26630],
-  ["Full Motion","90 tablets","Bone & joint","Joint support formula for comfortable, flexible movement.",58500,49940],
-  ["Chelated Cal-Mag with Vitamin D","90 tablets","Bone & joint","Calcium, magnesium and vitamin D for strong bones.",26480,22490],
-  ["Feminine Herbal Complex","60 tablets","Women's health","Herbal blend made for women's cyclical needs.",59050,51230],
-  ["Cruciferous Plus","60 tablets","Women's health","Concentrated cruciferous vegetables such as broccoli and cabbage.",38920,33260,true],
-  ["Masculine Herbal Complex","60 tablets","Men's health","Herbal blend made to support male vitality.",67960,59060],
-  ["Vita Guard","120 chewable tablets","Children","Chewable antioxidant tablets children enjoy.",69590,59870],
-  ["Vita Squares","180 chewable tablets","Children","Chewable vitamins and minerals for children's daily needs.",48420,40910],
-  ["Chewable All-C","90 tablets","Children","Chewable vitamin C, popular with children and adults.",37500,31970],
-  ["Smart 8 Plus","60 capsules","Sharper mind","Capsule supplement for daily wellbeing. Message me for full details.",31290,25870],
-  ["Vitamin B Complex Sustained Release","60 tablets","Vitamins & minerals","B vitamins released slowly through the day to support energy.",70810,60720,true],
-  ["Vitamin E 200 IU","60 capsules","Vitamins & minerals","Vitamin E with antioxidant support.",38950,33070],
-  ["Vegan D with Vitamin D2/D3","Tablets","Vitamins & minerals","Plant-sourced vitamin D for bones and immunity.",21120,17930],
-  ["Magnesium Complex","60 tablets","Vitamins & minerals","Magnesium to support muscles, nerves and energy.",23780,20160],
-  ["Chelated Zinc","100 tablets","Vitamins & minerals","Zinc in an easily absorbed form.",34000,28670],
-  ["Super 10 Fragranced","1 litre","Home & garden","Concentrated all-purpose cleaner for the home.",28070,23820],
-  ["Light Duty Cleaner (LDC)","1 litre","Home & garden","Gentle concentrated cleaner for dishes and delicate surfaces.",32860,27890],
-  ["Super Gro","1 litre","Home & garden","Plant nutrient concentrate for crops and gardens.",23040,19440],
-  ["Super Gro","5 litres","Home & garden","Larger pack of Super Gro for farms and big gardens.",99530,82280]
-].map(([name,size,need,desc,retail,dist,soldOut])=>({name,size,need,desc,retail,dist,soldOut:!!soldOut}));
-const S3 = "https://s3-us-west-1.amazonaws.com/static.neolife.com/market/";
-const DETAILS = {
-  "Pro Vitality": {f:["21 vitamins and minerals","Omega-3 fish oil in every sachet","Carotenoids and whole-grain lipids from plants"],use:"One sachet a day with a meal.",sheet:"us/product/ProVitality/fastfacts.pdf"},
-  "Tre-en-en Grain Concentrates": {f:["Plant lipids and sterols from wheat germ, rice bran and soybeans","Processed at low temperature to protect the nutrients","Natural vitamin E keeps the oils fresh"],use:"1 to 3 capsules a day with meals.",sheet:"us/product/TreEnEn/fastfacts.pdf"},
-  "Formula IV Plus": {f:["Iron-free vitamins and minerals","Plant enzymes to help digestion","Tre-en-en grain concentrates in every serving"],use:"One sachet a day with a meal.",sheet:"za/product/FormulaIVPlus/fastfacts.pdf"},
-  "PhytoDefence": {f:["Carotenoid capsules from colourful fruits and vegetables","Flavonoid tablets from berries, citrus, grapes and green tea","A cruciferous tablet from kale, broccoli and similar vegetables"],use:"One pack a day with a meal.",sheet:"ca/product/PhytoDefense/fastfacts.pdf"},
-  "Carotenoid Complex": {f:["A blend of carotenoids from tomatoes, carrots, spinach and red peppers","Oil-based capsules for better absorption","No synthetic colours, flavours or preservatives"],use:"3 capsules a day.",sheet:"za/product/CarotenoidComplex/fastfacts.pdf"},
-  "Beta Guard": {f:["Beta-carotene and other carotenoids, with whole-food vitamins C and E","B vitamins that help the body process foreign substances","Zinc, selenium and chromium in an easily absorbed form"],use:"Follow the label directions."},
-  "Flavonoid Complex": {f:["Extracts from nine sources, including cranberry, kale, green tea and grapes","Several types of flavonoids","Added vitamin C"],use:"1 to 2 tablets a day.",sheet:"us/product/Flavonoid/fastfacts.pdf"},
-  "Vitamin C Sustained Release": {f:["High-purity vitamin C released over several hours","Citrus bioflavonoids from buckwheat, grapefruit and lemon","Gentle on the stomach"],use:"Follow the label directions.",sheet:"ng/product/AllC/fastfacts.pdf"},
-  "Chewable All-C": {f:["Vitamin C with rose hips and acerola cherry","Citrus bioflavonoids","Pleasant chewable tablet for children and adults"],use:"Chew as directed on the label.",sheet:"ng/product/AllC/fastfacts.pdf"},
-  "Omega-3": {f:["Concentrated salmon oil with EPA and DHA","The full family of eight omega-3 fats","No added vitamin A or D"],use:"3 capsules a day with meals.",sheet:"ng/product/SalmonOilPlus/fastfacts.pdf"},
-  "Smart 8 Plus": {f:["Salmon oil with the full family of eight omega-3 fats","Same concentrate as the larger Omega-3 capsules","Smaller dose, convenient for daily use"],use:"2 capsules a day with meals.",sheet:"ng/product/SalmonOilPlus/fastfacts.pdf"},
-  "CoQ10": {f:["50 mg of coenzyme Q10 per capsule","Rice tocotrienols, plant sterols and grape polyphenols","L-cysteine to support the body's own antioxidants"],use:"2 capsules a day with a meal.",sheet:"ng/product/CoQ10/fastfacts.pdf"},
-  "Garlic Allium Complex": {f:["Garlic, onion, chive and leek extracts","Standardised allicin content","Coated tablet that reduces garlic breath"],use:"2 tablets a day.",sheet:"ke/product/GarlicAlliumComplex/fastfacts.pdf"},
-  "All Natural Fibre": {f:["Soluble and insoluble fibre from twelve whole-food sources","6 g of fibre per serving","No artificial additives"],use:"Stir 3 tablespoons into a glass of milk, water or juice, or add to recipes.",sheet:"us/product/AllNaturalFiber/fastfacts.pdf"},
-  "Fibre Tablets": {f:["Soluble and insoluble fibre from fruits, vegetables, grains and legumes","2 g of fibre per 4 tablets","No caffeine, sodium or artificial additives"],use:"4 tablets with a full glass of water about 30 minutes before a meal.",sheet:"cm/product/FibreTablets/fastfacts.pdf"},
-  "Aloe Vera Plus": {f:["Inner aloe vera gel only, without the bitter outer leaf","Black tea, ginseng and chamomile","Lightly sparkling and lightly sweetened"],use:"50 to 100 ml a day. Keep in the fridge after opening.",sheet:"ng/product/AloeVeraPlus/fastfacts.pdf"},
-  "Ami-Tone": {f:["Free-form amino acids including L-arginine and L-ornithine","Chelated minerals with valerian and chickweed","Made to go with sensible eating and regular exercise"],use:"Take at bedtime, at least 3 hours after your last meal.",sheet:"gh/product/AmiTone/fastfacts.pdf"},
-  "NeoLifeTea": {f:["Green, black and white tea extracts","Ginseng, codonopsis and rhodiola herbs","Lemon flavour, low in kilojoules"],use:"Mix one stick into hot or cold water.",sheet:"tz/product/NeoLifeTea/fastfacts.pdf"},
-  "Wheat Germ Oil": {f:["Cold-pressed oil from wheat germ","A natural source of vitamin E","Soft, easy-to-swallow capsules"],use:"Follow the label directions."},
-  "Botanical Balance": {f:["Cassia cinnamon","Turmeric and curcumin","Chromium and alpha-lipoic acid"],use:"Follow the label directions.",sheet:"ng/product/BotanicalHealthyBalance/fastfacts.pdf"},
-  "Lipotropic Adjunct": {f:["Choline and inositol","Folic acid with vitamins B6 and B12","Betaine to support B12 absorption"],use:"Follow the label directions.",sheet:"us/product/LipotropicAdjunct/fastfacts.pdf"},
-  "Full Motion": {f:["1,500 mg glucosamine per serving","Herbal blend with bromelain, white willow and boswellia","Zinc, boron and silica"],use:"Follow the label directions.",sheet:"za/product/FullMotion/fastfacts.pdf"},
-  "Chelated Cal-Mag with Vitamin D": {f:["Calcium and magnesium bonded to amino acids for absorption","2:1 calcium to magnesium ratio","Vitamin D3"],use:"Follow the label directions, with meals.",sheet:"us/product/CalMag1000/fastfacts.pdf"},
-  "Feminine Herbal Complex": {f:["Wild yam, vitex and St John's wort","Made for women's monthly cycle","Plant-based ingredients"],use:"Follow the label directions.",sheet:"gh/product/FeminineHerbalComplex/fastfacts.pdf"},
-  "Cruciferous Plus": {f:["Broccoli, radish, kale, mustard and watercress extracts","Sulforaphane","Orange, liquorice root and soybean extracts"],use:"One tablet a day.",sheet:"ng/product/CruciferousPlus/fastfacts.pdf"},
-  "Masculine Herbal Complex": {f:["Saw palmetto","St John's wort and skullcap","Damiana"],use:"Follow the label directions.",sheet:"ke/product/MasculineHerbalComplex/fastfacts.pdf"},
-  "Vita Guard": {f:["Flavonoids, vitamin C, carotenoids and the full vitamin E family","Selenium and zinc","Sweetened with fruit, no added sucrose or artificial additives"],use:"Chewable tablet for children who can chew. Follow the label.",sheet:"gh/product/VitaGuard/fastfacts.pdf"},
-  "Vita Squares": {f:["Multivitamin and mineral for children aged 4 and up","Grain concentrate from wheat germ, rice bran and soybeans","Sweetened with fruit juice concentrates, not sucrose"],use:"3 tablets a day with food.",sheet:"us/product/VitaSquares/fastfacts.pdf"},
-  "Vitamin B Complex Sustained Release": {f:["The B vitamin family in one tablet","Released slowly through the day","Supports normal energy release from food"],use:"Follow the label directions."},
-  "Vitamin E 200 IU": {f:["200 IU of vitamin E per capsule","Antioxidant support","Soft capsule"],use:"Follow the label directions."},
-  "Vegan D with Vitamin D2/D3": {f:["Vitamin D3 from lichen","Vitamin D2 from yeast and mushrooms","No animal ingredients"],use:"Follow the label directions.",sheet:"za/product/VeganD/fastfacts.pdf"},
-  "Magnesium Complex": {f:["Several forms of magnesium, including glycinate and citrate","Plant blend of beet, kale, broccoli and radish","Vegan formula"],use:"1 to 2 tablets a day.",sheet:"us/product/Magnesium/fastfacts.pdf"},
-  "Chelated Zinc": {f:["High-purity zinc","Bonded to amino acids for better absorption","GMO-free ingredients"],use:"Follow the label directions, with meals.",sheet:"us/product/Zinc/fastfacts.pdf"},
-  "Super 10 Fragranced": {f:["Penetrates, dissolves and lifts dirt","Rinses away with no sticky residue","Biodegradable, phosphate-free and non-flammable"],use:"Dilute with water: about 1 part to 10 for heavy jobs, 1 to 3 for very heavy jobs.",sheet:"gh/product/Super10/fastfacts.pdf"},
-  "Light Duty Cleaner (LDC)": {f:["Lifts grease and dirt","Rinses away with no soapy film","Gentle enough for delicate fabrics"],use:"Dilute before use, about 1 part LDC to 3 parts water for general cleaning.",sheet:"us/product/LDC/fastfacts.pdf"},
-  "Super Gro": {f:["Helps water soak deeper into soil","Reduces water lost to runoff and evaporation","Makes fertiliser in the water work better"],use:"Mix 1 ml per litre of water and spray leaves and roots, early morning or late afternoon.",sheet:"ng/product/SuperGro/fastfacts.pdf"}
-};
-/* ==================================================== */
-
-const $ = s => document.querySelector(s);
-const sel = $("#country");
-let current = "NG", filter = "All";
-
-for (const [code,c] of Object.entries(COUNTRIES)) sel.add(new Option(c.name, code));
-try { const saved = localStorage.getItem("country"); if (saved && COUNTRIES[saved]) current = saved; } catch(e){}
-sel.value = current;
-
-const waLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
-function detailHtml(p){
-  const d = DETAILS[p.name]; if(!d) return "";
-  const esc = t => t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-  return `<details><summary>Product details</summary><ul>${d.f.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><p class="use"><strong>How to use:</strong> ${esc(d.use)}</p>${d.sheet?`<a class="sheet" href="${S3+d.sheet}" target="_blank" rel="noopener">Official NeoLife fact sheet (PDF) →</a>`:""}</details>`;
-}
-function render(){
-  const c = COUNTRIES[current];
-  $("#cname").textContent = c.name === "Another country" ? "your country" : c.name;
-  const needs = ["All", ...new Set(PRODUCTS.map(p=>p.need))];
-  $("#chips").innerHTML = needs.map(n=>`<button class="chip" type="button" aria-pressed="${n===filter}" data-need="${n}">${n}</button>`).join("");
-  const q = ($("#q").value||"").trim().toLowerCase();
-  const list = PRODUCTS.filter(p=>(filter==="All"||p.need===filter) && (!q || (p.name+" "+p.need+" "+p.desc).toLowerCase().includes(q)));
-  $("#count").textContent = list.length + (list.length===1?" product":" products");
-  const fmt = n => "\u20A6" + n.toLocaleString("en-NG");
-  $("#shelf").innerHTML = list.length ? list.map(p=>{
-    const askMsg = `Hi Petros, I'm in ${c.name === "Another country" ? "(my country)" : c.name} and I'd like to order ${p.name} (${p.size}).`;
-    const href = c.shop || waLink(askMsg);
-    const prices = current==="NG"
-      ? `<div class="prices"><span class="retail">${fmt(p.retail)}</span><span class="member">Member price ${fmt(p.dist)}</span></div>`
-      : `<div class="prices"><span class="price">${c.currency ? "Price in "+c.currency+" on the "+c.name+" shop" : "Message me to check availability"}</span></div>`;
-    const action = p.soldOut
-      ? `<span class="soldout">Temporarily sold out</span><a class="btn btn-ghost" href="${waLink("Hi Petros, please tell me when "+p.name+" ("+p.size+") is back in stock.")}" target="_blank" rel="noopener">Notify me on WhatsApp</a>`
-      : `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>`;
-    return `<article class="prod"><span class="need">${p.need}</span><h3>${p.name}</h3><span class="size">${p.size}</span><p>${p.desc}</p>${detailHtml(p)}${prices}${action}</article>`;
-  }).join("") : `<p class="lead">No products match that search. Try another word, or <a href="${waLink("Hi Petros, I'm looking for a product to help with: ")}" target="_blank" rel="noopener">ask me on WhatsApp</a>.</p>`;
-  const reg = $("#regBtn");
-  reg.href = c.register || waLink("Hi Petros, I want to register but my country isn't listed. Can you help?");
-  reg.textContent = c.register ? `Register through my link (${c.name})` : "Ask me about your country";
-}
-
-sel.addEventListener("change", ()=>{ current = sel.value; try{localStorage.setItem("country",current)}catch(e){}; render(); });
-$("#q").addEventListener("input", render);
-$("#chips").addEventListener("click", e=>{ const b = e.target.closest(".chip"); if(!b) return; filter = b.dataset.need; render(); });
-
-$("#leadForm").addEventListener("submit", e=>{
-  e.preventDefault();
-  const name = $("#lname").value.trim(), phone = $("#lphone").value.trim();
-  const ok = $("#leadOk"); ok.hidden = false;
-  if(!name || !phone){ ok.textContent = "Please enter your name and WhatsApp number so I can send the guide."; return; }
-  const msg = `Hi Petros, I'm ${name} (${phone}) from ${COUNTRIES[current].name}. Please send me the free beginner's guide. I'm interested in: ${$("#linterest").value}.`;
-  ok.innerHTML = `Thanks, ${name.replace(/</g,"&lt;")}. Tap below to send your request to me on WhatsApp.<br><a class="btn btn-leaf" style="margin-top:10px" href="${waLink(msg)}" target="_blank" rel="noopener">Open WhatsApp</a>`;
-});
-
-$("#wa").textContent = "+" + WHATSAPP;
-render();
-</script>
+<script src="data.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>

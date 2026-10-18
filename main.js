@@ -1,0 +1,81 @@
+/* Shared behaviour for the home page and the product pages. Data lives in data.js. */
+(function(){
+  const { WHATSAPP, COUNTRIES, PRODUCTS } = window.SITE;
+  const $ = s => document.querySelector(s);
+  const root = document.body.dataset.root || "";
+  const esc = t => String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+  const fmt = n => "₦" + n.toLocaleString("en-NG");
+  const waLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  let current = "NG", filter = "All";
+
+  const sel = $("#country");
+  for (const [code,c] of Object.entries(COUNTRIES)) sel.add(new Option(c.name, code));
+  try { const saved = localStorage.getItem("country"); if (saved && COUNTRIES[saved]) current = saved; } catch(e){}
+  sel.value = current;
+  const country = () => COUNTRIES[current];
+  const placeName = () => country().name === "Another country" ? "my country" : country().name;
+
+  function priceHtml(p){
+    const c = country();
+    return current==="NG"
+      ? `<div class="prices"><span class="retail">${fmt(p.retail)}</span><span class="member">Member price ${fmt(p.dist)}</span></div>`
+      : `<div class="prices"><span class="price">${c.currency ? "Price in "+c.currency+" on the "+c.name+" shop" : "Message me to check availability"}</span></div>`;
+  }
+  function actionHtml(p){
+    const c = country();
+    if (p.soldOut) return `<span class="soldout">Temporarily sold out</span><a class="btn btn-ghost" href="${waLink(`Hi Petros, please tell me when ${p.name} (${p.size}) is back in stock.`)}" target="_blank" rel="noopener">Notify me on WhatsApp</a>`;
+    const href = c.shop || waLink(`Hi Petros, I'm in ${placeName()} and I'd like to order ${p.name} (${p.size}).`);
+    return `<a class="btn btn-leaf" href="${href}" target="_blank" rel="noopener">${c.shop ? "Order on official shop" : "Order on WhatsApp"}</a>`;
+  }
+  function card(p){
+    return `<article class="prod"><span class="need">${esc(p.need)}</span><h3><a class="plink" href="${root}products/${p.slug}.html">${esc(p.name)}</a></h3><span class="size">${esc(p.size)}</span><p>${esc(p.desc)}</p>${priceHtml(p)}<div class="acts">${actionHtml(p)}<a class="more" href="${root}products/${p.slug}.html">Full details →</a></div></article>`;
+  }
+
+  function renderShop(){
+    const shelf = $("#shelf"); if (!shelf) return;
+    const needs = ["All", ...new Set(PRODUCTS.map(p=>p.need))];
+    $("#chips").innerHTML = needs.map(n=>`<button class="chip" type="button" aria-pressed="${n===filter}" data-need="${esc(n)}">${esc(n)}</button>`).join("");
+    const q = ($("#q").value||"").trim().toLowerCase();
+    const list = PRODUCTS.filter(p=>(filter==="All"||p.need===filter) && (!q || (p.name+" "+p.need+" "+p.desc+" "+p.features.join(" ")).toLowerCase().includes(q)));
+    $("#count").textContent = list.length + (list.length===1?" product":" products");
+    shelf.innerHTML = list.length ? list.map(card).join("")
+      : `<p class="lead">No products match that search. Try another word, or <a href="${waLink("Hi Petros, I'm looking for a product to help with: ")}" target="_blank" rel="noopener">ask me on WhatsApp</a>.</p>`;
+  }
+
+  function renderProduct(){
+    const box = $("#productBuy"); if (!box) return;
+    const p = PRODUCTS.find(x=>x.slug===document.body.dataset.slug); if (!p) return;
+    box.innerHTML = priceHtml(p) + `<div class="acts">${actionHtml(p)}<a class="btn btn-ghost" href="${waLink(`Hi Petros, I have a question about ${p.name} (${p.size}).`)}" target="_blank" rel="noopener">Ask a question</a></div>`;
+    const rel = $("#related");
+    if (rel) rel.innerHTML = PRODUCTS.filter(x=>x.need===p.need && x.slug!==p.slug).slice(0,3).map(card).join("") || "";
+    const relWrap = $("#relatedWrap"); if (relWrap) relWrap.hidden = !rel.innerHTML;
+  }
+
+  function render(){
+    const c = country();
+    document.querySelectorAll("[data-cname]").forEach(el=>el.textContent = c.name === "Another country" ? "your country" : c.name);
+    const reg = $("#regBtn");
+    if (reg){
+      reg.href = c.register || waLink("Hi Petros, I want to register but my country isn't listed. Can you help?");
+      reg.textContent = c.register ? `Register through my link (${c.name})` : "Ask me about your country";
+    }
+    renderShop(); renderProduct();
+  }
+
+  sel.addEventListener("change", ()=>{ current = sel.value; try{localStorage.setItem("country",current)}catch(e){} render(); });
+  const q = $("#q"); if (q) q.addEventListener("input", renderShop);
+  const chips = $("#chips"); if (chips) chips.addEventListener("click", e=>{ const b = e.target.closest(".chip"); if(!b) return; filter = b.dataset.need; renderShop(); });
+
+  const form = $("#leadForm");
+  if (form) form.addEventListener("submit", e=>{
+    e.preventDefault();
+    const name = $("#lname").value.trim(), phone = $("#lphone").value.trim();
+    const ok = $("#leadOk"); ok.hidden = false;
+    if(!name || !phone){ ok.textContent = "Please enter your name and WhatsApp number so I can send the guide."; return; }
+    const msg = `Hi Petros, I'm ${name} (${phone}) from ${country().name}. Please send me the free beginner's guide. I'm interested in: ${$("#linterest").value}.`;
+    ok.innerHTML = `Thanks, ${esc(name)}. Tap below to send your request to me on WhatsApp.<br><a class="btn btn-leaf" style="margin-top:10px" href="${waLink(msg)}" target="_blank" rel="noopener">Open WhatsApp</a>`;
+  });
+
+  const wa = $("#wa"); if (wa) wa.textContent = "+" + WHATSAPP.replace(/^(\d{3})(\d{3})(\d{3})(\d{4})$/,"$1 $2 $3 $4");
+  render();
+})();
