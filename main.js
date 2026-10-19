@@ -33,7 +33,7 @@
   /* Prices are set in naira. For other countries we show an estimate using today's exchange rate. */
   let rates = null;
   function money(n, cur){
-    try { return new Intl.NumberFormat(undefined, {style:"currency", currency:cur, maximumFractionDigits: n >= 1000 ? 0 : 2}).format(n); }
+    try { return new Intl.NumberFormat(undefined, {style:"currency", currency:cur, currencyDisplay: cur === "NGN" ? "narrowSymbol" : "symbol", maximumFractionDigits: n >= 1000 ? 0 : 2}).format(n); }
     catch(e){ return cur + " " + Math.round(n).toLocaleString(); }
   }
   const fmt = n => money(n, "NGN");

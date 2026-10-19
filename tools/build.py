@@ -57,6 +57,7 @@ today = datetime.date.today().isoformat()
 home_ld = {
   "@context":"https://schema.org","@graph":[
     {"@type":"WebSite","name":"Thrive with Petros","url":BASE+"/"},
+    {"@type":"Organization","name":"Thrive with Petros","url":BASE+"/","logo":BASE+"/images/logo/icon-green.png"},
     {"@type":"Person","name":"Petros","jobTitle":"Independent NeoLife Distributor","url":BASE+"/",
      "email":"peter@petronixtechnology.com","telephone":"+"+data["WHATSAPP"]},
     {"@type":"ItemList","name":"NeoLife products","itemListElement":[
@@ -69,7 +70,7 @@ seo_head = f"""<!--SEO-HEAD-->
 <meta property="og:title" content="NeoLife Supplements & Business Opportunity | Thrive with Petros">
 <meta property="og:description" content="Shop the full NeoLife range or start your own NeoLife business with free training. Worldwide.">
 <meta property="og:url" content="{BASE}/">
-<meta property="og:image" content="{BASE}/images/products/pro-vitality-30-sachets.jpg">
+<meta property="og:image" content="{BASE}/images/logo/logo-stacked.png">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{json.dumps(home_ld, ensure_ascii=False)}</script>
 <!--/SEO-HEAD-->"""

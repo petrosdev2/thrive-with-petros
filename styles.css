@@ -188,3 +188,5 @@ footer .wrap{display:grid;gap:10px}
   .week,.callout{break-inside:avoid}
   a{color:inherit}
 }
+.brand img{display:block;height:40px;width:auto}
+@media (max-width:420px){.brand img{height:34px}}
