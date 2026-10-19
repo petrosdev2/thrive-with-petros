@@ -70,8 +70,10 @@ seo_head = f"""<!--SEO-HEAD-->
 <meta property="og:title" content="NeoLife Supplements & Business Opportunity | Thrive with Petros">
 <meta property="og:description" content="Shop the full NeoLife range or start your own NeoLife business with free training. Worldwide.">
 <meta property="og:url" content="{BASE}/">
-<meta property="og:image" content="{BASE}/images/logo/logo-stacked.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{BASE}/images/share-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(home_ld, ensure_ascii=False)}</script>
 <!--/SEO-HEAD-->"""
 groups = {}
